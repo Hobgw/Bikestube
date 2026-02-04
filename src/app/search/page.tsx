@@ -22,26 +22,7 @@ function SearchPageContent() {
   const [searchedLocation, setSearchedLocation] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
 
-  // Parse URL params on mount
-  useEffect(() => {
-    const query = searchParams.get('q');
-    const lat = searchParams.get('lat');
-    const lng = searchParams.get('lng');
-
-    if (lat && lng) {
-      const coords = {
-        latitude: parseFloat(lat),
-        longitude: parseFloat(lng),
-      };
-      setCoordinates(coords);
-      setSearchedLocation('Dein Standort');
-      performSearch(coords);
-    } else if (query) {
-      setLocationInput(query);
-      handleSearchByAddress(query);
-    }
-  }, [searchParams]);
-
+  // Define callbacks first so they can be used in useEffect
   const performSearch = useCallback((coords: Coordinates, pageNum: number = 1) => {
     setIsLoading(true);
     setError(null);
@@ -98,6 +79,26 @@ function SearchPageContent() {
       console.error('Geocoding error:', err);
     }
   }, [performSearch, router]);
+
+  // Parse URL params on mount
+  useEffect(() => {
+    const query = searchParams.get('q');
+    const lat = searchParams.get('lat');
+    const lng = searchParams.get('lng');
+
+    if (lat && lng) {
+      const coords = {
+        latitude: parseFloat(lat),
+        longitude: parseFloat(lng),
+      };
+      setCoordinates(coords);
+      setSearchedLocation('Dein Standort');
+      performSearch(coords);
+    } else if (query) {
+      setLocationInput(query);
+      handleSearchByAddress(query);
+    }
+  }, [searchParams, performSearch, handleSearchByAddress]);
 
   const handleSearch = useCallback(() => {
     handleSearchByAddress(locationInput);
