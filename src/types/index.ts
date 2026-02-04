@@ -86,3 +86,22 @@ export interface ShopSearchResult extends Shop {
   distance_km: number;
   services_preview: string[];
 }
+
+// Booking flow types
+export interface TimeSlot {
+  start: string; // ISO datetime string
+  end: string; // ISO datetime string
+  available: boolean;
+}
+
+export interface DayAvailability {
+  date: string; // YYYY-MM-DD
+  dayName: string;
+  slots: TimeSlot[];
+}
+
+export interface SelectedServices {
+  services: Service[];
+  totalPriceCents: number;
+  totalDurationMinutes: number;
+}

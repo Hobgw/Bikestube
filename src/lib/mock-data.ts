@@ -1,4 +1,4 @@
-import { Shop, Service } from '@/types';
+import { Shop, Service, Availability, Booking, BlockedDate } from '@/types';
 
 // Mock shops in Berlin for development
 export const mockShops: Shop[] = [
@@ -159,3 +159,123 @@ export const BERLIN_CENTER = {
   latitude: 52.5200,
   longitude: 13.4050,
 };
+
+// Mock availability templates for shops (weekly schedule)
+// Most shops: Mon-Fri 9-18, Sat 10-14
+export const mockAvailability: Availability[] = [
+  // Shop 1 - Rad-Werk Berlin (Mon-Fri 9-18, Sat 10-14)
+  { id: 'a1-1', shop_id: '1', day_of_week: 1, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a1-2', shop_id: '1', day_of_week: 2, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a1-3', shop_id: '1', day_of_week: 3, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a1-4', shop_id: '1', day_of_week: 4, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a1-5', shop_id: '1', day_of_week: 5, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a1-6', shop_id: '1', day_of_week: 6, start_time: '10:00', end_time: '14:00', is_active: true },
+
+  // Shop 2 - Fahrrad-Doktor Kreuzberg (Mon-Sat 10-19)
+  { id: 'a2-1', shop_id: '2', day_of_week: 1, start_time: '10:00', end_time: '19:00', is_active: true },
+  { id: 'a2-2', shop_id: '2', day_of_week: 2, start_time: '10:00', end_time: '19:00', is_active: true },
+  { id: 'a2-3', shop_id: '2', day_of_week: 3, start_time: '10:00', end_time: '19:00', is_active: true },
+  { id: 'a2-4', shop_id: '2', day_of_week: 4, start_time: '10:00', end_time: '19:00', is_active: true },
+  { id: 'a2-5', shop_id: '2', day_of_week: 5, start_time: '10:00', end_time: '19:00', is_active: true },
+  { id: 'a2-6', shop_id: '2', day_of_week: 6, start_time: '10:00', end_time: '16:00', is_active: true },
+
+  // Shop 3 - E-Bike Zentrum Mitte (Mon-Fri 8-17)
+  { id: 'a3-1', shop_id: '3', day_of_week: 1, start_time: '08:00', end_time: '17:00', is_active: true },
+  { id: 'a3-2', shop_id: '3', day_of_week: 2, start_time: '08:00', end_time: '17:00', is_active: true },
+  { id: 'a3-3', shop_id: '3', day_of_week: 3, start_time: '08:00', end_time: '17:00', is_active: true },
+  { id: 'a3-4', shop_id: '3', day_of_week: 4, start_time: '08:00', end_time: '17:00', is_active: true },
+  { id: 'a3-5', shop_id: '3', day_of_week: 5, start_time: '08:00', end_time: '17:00', is_active: true },
+
+  // Shop 4 - Velociped Werkstatt (Tue-Sat 9-18)
+  { id: 'a4-1', shop_id: '4', day_of_week: 2, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a4-2', shop_id: '4', day_of_week: 3, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a4-3', shop_id: '4', day_of_week: 4, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a4-4', shop_id: '4', day_of_week: 5, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a4-5', shop_id: '4', day_of_week: 6, start_time: '09:00', end_time: '15:00', is_active: true },
+
+  // Shop 5 - Berliner Radhaus (Mon-Fri 9-18, Sat 10-14)
+  { id: 'a5-1', shop_id: '5', day_of_week: 1, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a5-2', shop_id: '5', day_of_week: 2, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a5-3', shop_id: '5', day_of_week: 3, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a5-4', shop_id: '5', day_of_week: 4, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a5-5', shop_id: '5', day_of_week: 5, start_time: '09:00', end_time: '18:00', is_active: true },
+  { id: 'a5-6', shop_id: '5', day_of_week: 6, start_time: '10:00', end_time: '14:00', is_active: true },
+
+  // Shop 6 - Zweirad Schmidt (Mon-Fri 8-17)
+  { id: 'a6-1', shop_id: '6', day_of_week: 1, start_time: '08:00', end_time: '17:00', is_active: true },
+  { id: 'a6-2', shop_id: '6', day_of_week: 2, start_time: '08:00', end_time: '17:00', is_active: true },
+  { id: 'a6-3', shop_id: '6', day_of_week: 3, start_time: '08:00', end_time: '17:00', is_active: true },
+  { id: 'a6-4', shop_id: '6', day_of_week: 4, start_time: '08:00', end_time: '17:00', is_active: true },
+  { id: 'a6-5', shop_id: '6', day_of_week: 5, start_time: '08:00', end_time: '17:00', is_active: true },
+
+  // Shop 7 - Pedal Power Charlottenburg (Mon-Sat 9-19)
+  { id: 'a7-1', shop_id: '7', day_of_week: 1, start_time: '09:00', end_time: '19:00', is_active: true },
+  { id: 'a7-2', shop_id: '7', day_of_week: 2, start_time: '09:00', end_time: '19:00', is_active: true },
+  { id: 'a7-3', shop_id: '7', day_of_week: 3, start_time: '09:00', end_time: '19:00', is_active: true },
+  { id: 'a7-4', shop_id: '7', day_of_week: 4, start_time: '09:00', end_time: '19:00', is_active: true },
+  { id: 'a7-5', shop_id: '7', day_of_week: 5, start_time: '09:00', end_time: '19:00', is_active: true },
+  { id: 'a7-6', shop_id: '7', day_of_week: 6, start_time: '10:00', end_time: '16:00', is_active: true },
+
+  // Shop 8 - Kettenfett Fahrradwerkstatt (Wed-Sun 11-19)
+  { id: 'a8-1', shop_id: '8', day_of_week: 3, start_time: '11:00', end_time: '19:00', is_active: true },
+  { id: 'a8-2', shop_id: '8', day_of_week: 4, start_time: '11:00', end_time: '19:00', is_active: true },
+  { id: 'a8-3', shop_id: '8', day_of_week: 5, start_time: '11:00', end_time: '19:00', is_active: true },
+  { id: 'a8-4', shop_id: '8', day_of_week: 6, start_time: '11:00', end_time: '17:00', is_active: true },
+  { id: 'a8-5', shop_id: '8', day_of_week: 0, start_time: '12:00', end_time: '17:00', is_active: true },
+];
+
+// Helper to get availability for a shop
+export function getAvailabilityForShop(shopId: string): Availability[] {
+  return mockAvailability.filter(a => a.shop_id === shopId && a.is_active);
+}
+
+// Mock blocked dates (holidays, vacations, etc.)
+export const mockBlockedDates: BlockedDate[] = [
+  // Some example blocked dates
+];
+
+// Helper to get blocked dates for a shop
+export function getBlockedDatesForShop(shopId: string): BlockedDate[] {
+  return mockBlockedDates.filter(b => b.shop_id === shopId);
+}
+
+// Mock existing bookings (to check for conflicts)
+export const mockBookings: Booking[] = [
+  // Some example bookings to show slots as taken
+  {
+    id: 'b1',
+    shop_id: '1',
+    user_name: 'Max Mustermann',
+    user_email: 'max@example.com',
+    user_phone: '+49 170 1234567',
+    scheduled_at: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] + 'T10:00:00Z',
+    total_price_cents: 4900,
+    total_duration_minutes: 45,
+    status: 'confirmed',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'b2',
+    shop_id: '1',
+    user_name: 'Anna Schmidt',
+    user_email: 'anna@example.com',
+    user_phone: '+49 171 2345678',
+    scheduled_at: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] + 'T14:00:00Z',
+    total_price_cents: 1500,
+    total_duration_minutes: 20,
+    status: 'confirmed',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+];
+
+// Helper to get bookings for a shop
+export function getBookingsForShop(shopId: string): Booking[] {
+  return mockBookings.filter(b => b.shop_id === shopId && (b.status === 'pending' || b.status === 'confirmed'));
+}
+
+// Helper to get shop by ID
+export function getShopById(shopId: string): Shop | undefined {
+  return mockShops.find(s => s.id === shopId);
+}
